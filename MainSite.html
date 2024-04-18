@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Passvault</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    
+    <link rel="stylesheet" type="text/css" href="stylesheet.css" />
+   
+
+</head>
+<body>
+
+    <!--Top bar-->
+    <div class="topnav">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
+            <div class="container">
+                <a class="navbar-brand" href="#">Passvault</a>
+                
+                </div>
+            </nav>
+    </div>
+    
+    <div class="container" style="padding-top:20px;">
+        <div class="row">
+
+            <div class="screen_name text-center text-uppercase" style="font-size: 70px"></div>
+
+            <div class="col-lg-12 screen_data"></div>
+
+            </div>
+        </div>
+
+
+
+
+        <!--Start of home page-->
+        <div class="screen_home">
+            <div class="Main_Text">
+                <h1 class="maintext_home">Passvault, a tool for password generation and strength checking</h1>
+
+                <img src="Logo.png" style="width:300px">
+                <p class="main">This site contains tools that can assist with strength checking for passwords and password generation</p>
+            </div>
+        </div>
+        <br />
+
+        <div class="screen_checker">
+            <h1 class="Main_Text">Strength Checker</h1>
+            <p>This tool can help you assess the strength of your passwords by checking your password against a set of criteria to help ensure that the password is strong.</p>
+            <p>Microsoft recommends that passwords meet a set of requirements before being used, this is to ensure that the passwords are hard to guess or brute force.</p>
+            <p> To ensure this is the case there is a commonly used set of requirements for passwords these are:</p>
+            <ol type="1">
+                <li>The password should be at least 12 characters long.</li>
+                <li>A mix of uppercase letters, lowercase letters, numbers, and symbols.</li>
+                <li>Shouldnt be able to be found in a dictionary or the name of anything, such as using a difficult to spell name to try fool people</li>
+                <li>Should be different from other passwords you use, this is especially important for things such as bank accounts of other highly important accounts</li>
+                <li>It should also be easy for you to remember but would prove difficult for others to guess, making it memorable ensures that you dont need to constantly reset the password.</li>
+            </ol>
+            <p>To check if your password meets the basic strength requirements for most websites, you can check them here with our password strength checker.</p>
+            <p>This tool is completely safe to use as it doesnt store any data that is input.</p>
+            <label for="password_entry">Please enter password here.</label>
+            <input type="password" id="password_tocheck" onkeyup="Passwordcheck_script()" />
+            <div id="passwordStrength"></div>
+            <script>
+                function Passwordcheck_script() {
+                    var password = document.getElementById("password_tocheck").value; //gets  the password by taking the value of the ID
+                    var passwordRating = document.getElementById("passwordStrength");
+
+                    var passwordStrength_Colour = "red";
+                    var passwordStrength_Text = "Weak password." //sets base colour and text for the password strength checker to show
+
+                    var MediumRequirements = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).{6,}$/; //setting up what needs to be checked for both medium and strong requirements
+                    var StrongRequirements = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[@!#$^&*]).{12,}$/;
+
+                    if (StrongRequirements.test(password)) { //tests the password against the strong requirements
+                        passwordStrength_Colour = "green";
+                        passwordStrength_Text = "Excellent!";
+                    }
+                    else if (MediumRequirements.test(password)) { //tests the passowrd against the medium requirements
+                        passwordStrength_Colour = "orange";
+                        passwordStrength_Text = "Moderate Strength.";
+                    }
+                    passwordRating.innerHTML = passwordStrength_Text; //updates the text for the checker
+                    passwordRating.style.color = passwordStrength_Colour; // updates the colour for the text
+                }
+            </script>
+            <br />
+        </div>
+
+        <div class="screen_generator">
+            <h1>Password Generator</h1>
+            <p>This tool can help you generate new passwords for sites by using a generator to make a password that is hard for people to crack due to the password being randomly generated, it removes the human element that makes passwords more guessable.</p>
+            <p>Having a wide range of passwords and changing them often is a good habit to have to help reduce the threat any data breach can cause you with unauthorized access to your passwords.</p>
+            <p>Using this password generator will generate a password that will be able to match the requirements that the strength checker looks for.</p>
+            <p>These tools are also completely safe to use as the application doesnt store any of the data that is input or generated.</p>
+
+            <button onclick="generatePassword()">Generate Password</button>
+            <br />
+            <input type="text" id="password" readonly style="width:fit-content" />
+
+            <script>
+                // sets the requirements for the password and can be changed as needed by changing the boolean variables and the length.
+                var config = {   //while they are not changable through the page, it is possible to make them change with buttons to allow for more customization but isnt used here so the passowrds meet the requirements
+                    "length": 12,
+                    "includeLowerCase": true,
+                    "includeUpperCase": true,
+                    "includeNumbers": true,
+                    "includeSpecialChars": true
+                };
+
+                
+                function generatePassword() { //declares the function to be used for the button
+                    var password = generatePasswordFromConfig(config); //runs the generation function with the values from config
+                    document.getElementById("password").value = password; //gets the password from the end of the function
+                }
+
+                
+                function generatePasswordFromConfig(config) {
+                    var password = '';
+                    var charset = '';
+
+                    if (config.includeLowerCase) charset += 'abcdefghijklmnopqrstuvwxyz'; //sets up the character sets that are used for generation
+                    if (config.includeUpperCase) charset += 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+                    if (config.includeNumbers) charset += '0123456789';
+                    if (config.includeSpecialChars) charset += '@#$%^&*';
+
+                    for (var i = 0; i < config.length; i++) { //sets a for loop that runs according to the length set in config
+                        password += charset.charAt(Math.floor(Math.random() * charset.length)); //adds the character generated to the password string 
+                    }
+
+                    return password; //returns the completed password allowing for it to be displayed
+                }
+            </script>
+
+        </div>
+        <br />
+        <br />
+        <br />
+    <div class="footer">
+     
+    <p>Made using HTML, CSS, and Javascript.</p>
+
+
+
+            
+        </div>
+
+</body >
+</html >

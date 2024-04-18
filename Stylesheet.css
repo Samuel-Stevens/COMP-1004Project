@@ -1,0 +1,57 @@
+<!DOCTYPE html >
+<html lang="en" >
+<head >
+<title > CSS Template</title >
+<meta charset="utf-8" >
+<meta name="viewport" content="width=device-width, initial-scale=1" >
+/* This is a template that is shared for free on W3 schools source: https://www.w3schools.com/css/css_templates.asp */
+<style >
+* {
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: grey;
+  
+}
+
+.topnav {
+  overflow: hidden;
+  background-color: #333;
+  color: white;
+}
+
+
+.topnav a {
+  float: left;
+  display: block;
+  color: #f2f2f2;
+  color: ;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+.topnav a:hover {
+  background-color: #333;
+  color: black;
+}
+
+
+.content {
+  background-color: #808080;
+  padding: 10px;
+  width: auto;
+  height: 700px;
+ 
+}
+
+.footer {
+  background-color: black;
+  padding: 10px;
+  color:white;
+}
+</style>
