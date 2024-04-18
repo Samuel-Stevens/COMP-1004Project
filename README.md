@@ -1,0 +1,1 @@
+Contains the code needed for my site to run, my website is a password strength checker and password generator that follows a set of requirements often found on mordern websites, there is no login system so there are no needed credentials.
